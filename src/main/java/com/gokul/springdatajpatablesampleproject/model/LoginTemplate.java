@@ -7,6 +7,9 @@ public class LoginTemplate {
     private String username;
     private String password;
 
+    public LoginTemplate() {
+    }
+
     public LoginTemplate(String username, String password) {
         this.username = username;
         this.password = password;
