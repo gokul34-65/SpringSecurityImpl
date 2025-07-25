@@ -5,12 +5,14 @@ import com.gokul.springdatajpatablesampleproject.model.User;
 import com.gokul.springdatajpatablesampleproject.service.JwtUtil;
 import com.gokul.springdatajpatablesampleproject.service.RoleService;
 import com.gokul.springdatajpatablesampleproject.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,5 +51,10 @@ public class UserController {
             return ResponseEntity.ok(token);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
+    @GetMapping("me")
+    public ResponseEntity<User> me(HttpServletRequest request){
+        return userService.getUser(request);
     }
 }
